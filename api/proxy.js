@@ -26,14 +26,13 @@ export default async function handler(req, res) {
       };
   
       // Kustom API'sine asıl isteği yap 
-      // DİKKAT: 429 Engelini aşmak için Chrome tarayıcısı kimliğine bürünüyoruz (User-Agent)
+      // ÇÖZÜM: Chrome taklidi yapmayı bırakıp, çalışan CURL sistemini taklit ediyoruz.
       const kustomResponse = await fetch('https://api.kustom.rocks/msg', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-          'Accept': 'application/json, text/plain, */*',
-          'Connection': 'keep-alive'
+          'User-Agent': 'curl/8.4.0',
+          'Accept': '*/*'
         },
         body: JSON.stringify(kustomPayload)
       });
